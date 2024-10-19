@@ -20,14 +20,32 @@ public class AutoresController extends HttpServlet {
 	
 	AutoresModel modelo = new AutoresModel();
 	
-	 
-
-	
     /**
      * Default constructor. 
      */
     public AutoresController() {
         // TODO Auto-generated constructor stub
+    }
+    
+    protected void processRequest(HttpServletRequest request, HttpServletResponse response) {
+    	if(request.getParameter("op")==null) {
+    		//listar(request,respone);
+    		return;
+    	}
+    	String operacion = request.getParameter("op");
+    	switch (operacion) {
+		case "listar":
+				//listar(request, response);
+			break;
+
+		default:
+			break;
+		}
+    }
+    private void listar(HttpServletRequest request, HttpServletResponse response) 
+    		throws ServletException, IOException{
+    	request.setAttribute("listarAutores", modelo.listarAutores());
+    	request.getRequestDispatcher("/autores/listaAutores.jsp").forward(request, response);
     }
 
 	/**
