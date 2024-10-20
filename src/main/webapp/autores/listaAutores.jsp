@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
     <%@ page import='java.util.List' %>
-    <%@ page import='com.unu.poo2.beans.Autor' %>
+    <%@ page import='com.unu.poo2.beans.Autor'%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -18,7 +18,7 @@
 </thead>
 <tbody>
 <%
-	List<Autor> listarAutores = (List<Autor>)request.getAttribute("listarAutores");
+	List<Autor> listarAutores = (List<Autor>)request.getAttribute("listaAutores");
 	if(listarAutores != null){
 		for(Autor autor : listarAutores){
 %>
@@ -47,6 +47,5 @@
 </table>
 </head>
 <body>
-
 </body>
 </html>
