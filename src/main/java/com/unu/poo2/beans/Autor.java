@@ -9,7 +9,7 @@ public class Autor {
 
 	}
 
-	public Autor(int idAutor, String nacionalidad, String nombreAutor) {
+	public Autor(int idAutor, String nombreAutor, String nacionalidad) {
 		super();
 		this.idAutor = idAutor;
 		this.nacionalidad = nacionalidad;
