@@ -7,7 +7,12 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<table id="tabla">
+
+<body>
+<% String url = "http://localhost:8080/ejercicioWeb/";%>
+
+<a type = "button" href="<%=url %>AutoresController?op=nuevo">Nuevo Autor</a>;
+<table id="tabla" border="1">
 	<thead>
 		<tr>
 			<th>Codigo del autor</th>
@@ -45,6 +50,8 @@
 
 </table>
 </head>
-<body>
+
+
+
 </body>
 </html>

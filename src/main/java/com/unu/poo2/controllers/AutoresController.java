@@ -16,74 +16,95 @@ import com.mysql.cj.protocol.x.SyncFlushDeflaterOutputStream;
 import com.unu.poo2.beans.Autor;
 import com.unu.poo2.model.AutoresModel;
 
-
-
 /**
  * Servlet implementation class AutoresController
  */
 public class AutoresController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-	
+
 	AutoresModel modelo = new AutoresModel();
-	
-    /**
-     * Default constructor. 
-     */
-    public AutoresController() {
-        // TODO Auto-generated constructor stub
-    }
-    
-    protected void processRequest(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{
-    	
-    	 if(request.getParameter("op")==null){
-			 listar(request, response);
-			 	return;
-			 }
-			 String operacion = request.getParameter("op");
-			 
-			 switch (operacion) {
-			 case "listar":
-				 listar(request, response);
-			 break;
+
+	/**
+	 * Default constructor.
+	 */
+	public AutoresController() {
+		// TODO Auto-generated constructor stub
+	}
+
+	protected void processRequest(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+
+		if (request.getParameter("op") == null) {
+			listar(request, response);
+			return;
 		}
-    }
-    
-    private void lista(HttpServletRequest request, HttpServletResponse response) 
-    		throws ServletException, IOException{
-    	request.setAttribute("listarAutores", modelo.listarAutores());
-    	
-    	Iterator<Autor> it = modelo.listarAutores().iterator();
-    	while(it.hasNext()) {
-    		Autor a = it.next();
-    		System.out.println(a.getIdAutor()+" - "+a.getNombreAutor()+" - "+a.getNacionalidad());
-    	}
-    	request.getRequestDispatcher("/autores/listaAutores.jsp").forward(request, response);
-    	
-    }
-    private void listar(HttpServletRequest request, HttpServletResponse response) 
-    		throws ServletException, IOException{
-    	try {
-    		request.setAttribute("listaAutores", modelo.listarAutores());
-        	request.getRequestDispatcher("/autores/listaAutores.jsp").forward(request, response);
+		String operacion = request.getParameter("op");
+
+		switch (operacion) {
+		case "listar":
+			listar(request, response);
+			break;
+		case "nuevo":
+			request.getRequestDispatcher("/autores/nuevoAutor.jsp").forward(request, response);
+			break;
+		case "insertar":
+			insertar(request,response);
+			
+		}
+	}
+
+	/*
+	 * private void lista(HttpServletRequest request, HttpServletResponse response)
+	 * throws ServletException, IOException{ `request.setAttribute("listarAutores",
+	 * modelo.listarAutores());
+	 * 
+	 * Iterator<Autor> it = modelo.listarAutores().iterator(); while(it.hasNext()) {
+	 * Autor a = it.next();
+	 * System.out.println(a.getIdAutor()+" - "+a.getNombreAutor()+" - "+a.
+	 * getNacionalidad()); }
+	 * request.getRequestDispatcher("/autores/listaAutores.jsp").forward(request,
+	 * response);
+	 * 
+	 * }
+	 */
+
+	private void listar(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		try {
+			request.setAttribute("listaAutores", modelo.listarAutores());
+			request.getRequestDispatcher("/autores/listaAutores.jsp").forward(request, response);
 		} catch (ServletException | IOException ex) {
 			// TODO: handle exception
 			Logger.getLogger(AutoresController.class.getName()).log(Level.SEVERE, null, ex);
 		}
-    	
-    }
+
+	}
+	private void insertar(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		try {
+			Autor miAutor= new Autor();
+			miAutor.setNombreAutor(request.getParameter("nombre"));
+			miAutor.setNacionalidad(request.getParameter("nacionalidad"));
+		} catch (Exception e) {
+			// TODO: handle exception
+			e.getStackTrace();
+		}
+	}
 
 	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
+	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse
+	 *      response)
 	 */
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	protected void doGet(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		processRequest(request, response);
 	}
 
 	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
+	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse
+	 *      response)
 	 */
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	protected void doPost(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		processRequest(request, response);
 	}

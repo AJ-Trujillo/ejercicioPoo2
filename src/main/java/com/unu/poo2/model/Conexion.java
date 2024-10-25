@@ -14,7 +14,7 @@ public class Conexion {
 	
 	public void abrirConexion() {
 	try {
-		Class.forName("Driver.mysql.cj.jdbc.Driver");
+		Class.forName("com.mysql.cj.jdbc.Driver");
 		conexion = DriverManager.getConnection(url, usuario,contraseña);
 		System.out.println("Conexion exitosa a la base de datos");
 		
@@ -22,5 +22,17 @@ public class Conexion {
 		// TODO: handle exception
 		e.printStackTrace();
 	}
+	}
+	
+	public void cerrarConexion() {
+		try {
+			if(conexion != null & !conexion.isClosed()) {
+				conexion.close();
+				System.out.println("conexion cerrada");
+			}
+		} catch (SQLException e) {
+			// TODO: handle exception
+			e.printStackTrace();
+		}
 	}
 }
