@@ -48,8 +48,12 @@ public class AutoresController extends HttpServlet {
 			request.getRequestDispatcher("/autores/nuevoAutor.jsp").forward(request, response);
 			break;
 		case "insertar":
-			insertar(request,response);
-			
+			insertar(request, response);
+			break;
+		case "obtener":
+			insertar(request, response);
+			break;
+
 		}
 	}
 
@@ -78,14 +82,41 @@ public class AutoresController extends HttpServlet {
 		}
 
 	}
-	private void insertar(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+
+	private void insertar(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
 		try {
-			Autor miAutor= new Autor();
+			Autor miAutor = new Autor();
 			miAutor.setNombreAutor(request.getParameter("nombre"));
 			miAutor.setNacionalidad(request.getParameter("nacionalidad"));
+
+			if (modelo.insertarAutor(miAutor) > 0) {
+				request.getSession().setAttribute("exito", "autor registrado exitosamente");
+				response.sendRedirect(request.getContextPath() + "/AutoresController?op=listar");
+			} else {
+				request.getSession().setAttribute("fracaso", "autor no registrado");
+			}
+			response.sendRedirect(request.getContextPath() + "/AutoresController?op=listar");
+			
+		} catch (Exception e) {
+			e.getStackTrace();
+		}
+	}
+	
+	private void obtener(HttpServletRequest request, HttpServletResponse response)throws ServletException, IOException {
+		try {
+			String id = request.getParameter("id");
+			Autor miAutor = modelo.obtenerAutor(Integer.parseInt(id));
+			if(miAutor != null) {
+				request.setAttribute("autor", miAutor);
+				request.getRequestDispatcher("/autores/editarAutores.jsp").forward(request, response);
+			}else {
+				response.sendRedirect(request.getContextPath()+"/error404.jsp");
+			}
+			
 		} catch (Exception e) {
 			// TODO: handle exception
-			e.getStackTrace();
+			e.printStackTrace();
 		}
 	}
 

@@ -44,15 +44,86 @@ public class AutoresModel extends Conexion {
 		}
 	}
 	
-	/*public int insertarAutor(Autor autor)throws SQLException{
+	public int insertarAutor(Autor autor)throws SQLException{
 		try {
 			int filasAfectadas = 0;
-			String sqlString = "CALL sp_insertarAutor(?,?,?)";
+			String sql = "CALL sp_insertarAutor(?,?)";
 			this.abrirConexion();
-			cs = c
+			cs = conexion.prepareCall(sql);
+			cs.setString(1, autor.getNombreAutor());
+			cs.setString(2, autor.getNacionalidad());
+			filasAfectadas = cs.executeUpdate();
+			this.cerrarConexion();
+			return filasAfectadas;
+			
 		} catch (SQLException e) {
+			// TODO: handle exception
+			Logger.getLogger(AutoresModel.class.getName()).log(Level.SEVERE, null, e);
+			this.cerrarConexion();
+			return 0;
+
+		}
+	}
+	
+	public Autor obtenerAutor(int idautor) throws SQLException {
+			Autor autor = new Autor();
+		try {
+			String sql= "CALL sp_obtenerAutor(?)";
+			this.abrirConexion();
+			cs = conexion.prepareCall(sql);
+			cs.setInt(1, idautor);
+			if(rs.next()) {
+				
+				autor.setIdAutor(rs.getInt("idautor"));
+				autor.setNombreAutor(rs.getString("nombre"));
+				autor.setNacionalidad(rs.getString("nacionalidad"));
+				this.cerrarConexion();
+			}
+		} catch (Exception e) {
+			// TODO: handle exception
+			
+			this.cerrarConexion();
+			return null;
+		}
+		return autor;
+		
+	}
+	
+	public int modificarAutor(Autor autor)throws SQLException{
+		try {
+			int filasAfectadas = 0;
+			String sql = "CALL sp_modificarAutor(?,?,?)";
+			this.abrirConexion();
+			cs = conexion.prepareCall(sql);
+			cs.setInt(1, autor.getIdAutor());
+			cs.setString(2, autor.getNombreAutor());
+			cs.setString(3, autor.getNacionalidad());
+			filasAfectadas = cs.executeUpdate();
+			this.cerrarConexion();
+			return filasAfectadas;
+			
+		} catch (SQLException e) {
+			// TODO: handle exception
+			Logger.getLogger(AutoresModel.class.getName()).log(Level.SEVERE, null, e);
+			this.cerrarConexion();
+			return 0;
+
+		}
+	}
+	
+	/*public void eliminarAutor (int idAutor)throws SQLException {
+		try {
+			int filasAfectadas = 0;
+			String sql = "CALL sp_eliminarAutor(?)";
+			this.abrirConexion();
+			cs = conexion.prepareCall(sql);
+			cs.setInt(1, idAutor);
+			filasAfectadas = cs.executeUpdate();
+		} catch (Exception e) {
 			// TODO: handle exception
 		}
 	}*/
+	
+	
 
 }
