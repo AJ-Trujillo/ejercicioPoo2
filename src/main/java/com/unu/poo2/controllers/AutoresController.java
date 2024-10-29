@@ -51,7 +51,13 @@ public class AutoresController extends HttpServlet {
 			insertar(request, response);
 			break;
 		case "obtener":
-			insertar(request, response);
+			obtener(request, response);
+			break;
+		case "modificar":
+			modificar(request, response);
+			break;
+		case "eliminar":
+			eliminar(request, response);
 			break;
 
 		}
@@ -117,6 +123,42 @@ public class AutoresController extends HttpServlet {
 		} catch (Exception e) {
 			// TODO: handle exception
 			e.printStackTrace();
+		}
+	}
+	
+	private void modificar (HttpServletRequest request, HttpServletResponse response)throws ServletException, IOException {
+		try {
+			Autor miAutor = new Autor();
+			miAutor.setIdAutor(Integer.parseInt(request.getParameter("id")));
+			miAutor.setNombreAutor(request.getParameter("nombre"));
+			miAutor.setNacionalidad(request.getParameter("nacionalidad"));
+
+			if (modelo.modificarAutor(miAutor) > 0) {
+				request.getSession().setAttribute("exito", "autor modificado exitosamente");
+			} else {
+				request.getSession().setAttribute("fracaso", "autor no modificado");
+			}
+			response.sendRedirect(request.getContextPath() + "/AutoresController?op=listar");
+			
+		} catch (Exception ex) {
+			
+			ex.getStackTrace();
+		}
+	}
+	private void eliminar (HttpServletRequest request, HttpServletResponse response)throws ServletException, IOException {
+		try {
+			int id = Integer.parseInt(request.getParameter("id"));
+
+			if (modelo.eliminarAutor(id) > 0) {
+				request.getSession().setAttribute("exito", "autor eliminado exitosamente");
+			} else {
+				request.getSession().setAttribute("fracaso", "autor no eliminado");
+			}
+			response.sendRedirect(request.getContextPath() + "/AutoresController?op=listar");
+			
+		} catch (Exception ex) {
+			
+			ex.getStackTrace();
 		}
 	}
 

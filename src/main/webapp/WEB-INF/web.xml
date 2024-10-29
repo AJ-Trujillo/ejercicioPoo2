@@ -19,4 +19,14 @@
     <welcome-file>default.htm</welcome-file>
     <welcome-file>default.jsp</welcome-file>
   </welcome-file-list>
+  <servlet>
+    <description></description>
+    <display-name>EditorialControllers</display-name>
+    <servlet-name>EditorialControllers</servlet-name>
+    <servlet-class>com.unu.poo2.controllers.EditorialControllers</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>EditorialControllers</servlet-name>
+    <url-pattern>/EditorialControllers</url-pattern>
+  </servlet-mapping>
 </web-app>
