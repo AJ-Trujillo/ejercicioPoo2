@@ -11,7 +11,7 @@
 String url ="http://localhost:8080/ejercicioWeb/";
 %>
 
-	<h3>Nuevo Autor</h3>
+<h3>Nuevo Autor</h3>
 <form role="form" action="<%=url%>AutoresController" method="POST">
 <input type="hidden" name="op" value="insertar" />
 
