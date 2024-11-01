@@ -8,7 +8,7 @@
 </head>
 <body>
 <% 
-String url ="http://localhost:8080/ejercicioWeb/";
+String url ="http://localhost:8087/ejercicioWeb/";
 %>
 
 	<h3>Nuevo Editorial</h3>
@@ -27,7 +27,7 @@ String url ="http://localhost:8080/ejercicioWeb/";
 
 <input type="submit" value="Guardar"name="Guardar">
 
-<a href="<%=url %>EditorialController?op=listar">Retorno</a>
+<a href="<%=url %>EditorialControllers?op=listar">Retorno</a>
 </form>
 </body>
 

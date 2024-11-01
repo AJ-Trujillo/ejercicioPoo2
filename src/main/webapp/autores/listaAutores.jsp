@@ -9,7 +9,7 @@
 <title>Insert title here</title>
 
 <body>
-<% String url = "http://localhost:8080/ejercicioWeb/";%>
+<% String url = "http://localhost:8087/ejercicioWeb/";%>
 
 <a type = "button" href="<%=url %>AutoresController?op=nuevo">Nuevo Autor</a>;
 <table id="tabla" border="1">

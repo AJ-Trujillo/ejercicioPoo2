@@ -6,14 +6,17 @@
 <html>
 <head>
 <meta charset="UTF-8">
+<link rel="stylesheet" href="assets/css/bootstrap@4.3.1/dist/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+<script src="assets/js/bootstrap@4.3.1/dist/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+
 <title>Insert title here</title>
 </head>
 <body>
 	<%
-	String url = "http://localhost:8080/ejercicioWeb/";
+	String url = "http://localhost:8087/ejercicioWeb/";
 	%>
 
-	<a type="button" href="<%=url%>EditorialControllers?op=nuevo">Nuevo Editorial</a>;
+	<a type="button" class="btn btn-primary" href="<%=url%>EditorialControllers?op=nuevo">Nuevo Editorial</a>;
 	<table id="tabla" border="1">
 		<thead>
 			<tr>
@@ -61,5 +64,7 @@
 	</table>
 </head>
 </body>
+
+
 
 </html>
