@@ -8,7 +8,7 @@
 </head>
 <body>
 <% 
-String url ="http://localhost:8087/ejercicioWeb/";
+String url ="http://localhost:8089/ejercicioWeb/";
 %>
 
 	<h3>Nuevo Editorial</h3>

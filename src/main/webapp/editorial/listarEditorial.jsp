@@ -13,7 +13,7 @@
 </head>
 <body>
 	<%
-	String url = "http://localhost:8087/ejercicioWeb/";
+	String url = "http://localhost:8089/ejercicioWeb/";
 	%>
 
 	<a type="button" class="btn btn-primary" href="<%=url%>EditorialControllers?op=nuevo">Nuevo Editorial</a>;

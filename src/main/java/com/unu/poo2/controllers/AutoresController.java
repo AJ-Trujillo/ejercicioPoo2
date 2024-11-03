@@ -63,20 +63,6 @@ public class AutoresController extends HttpServlet {
 		}
 	}
 
-	/*
-	 * private void lista(HttpServletRequest request, HttpServletResponse response)
-	 * throws ServletException, IOException{ `request.setAttribute("listarAutores",
-	 * modelo.listarAutores());
-	 * 
-	 * Iterator<Autor> it = modelo.listarAutores().iterator(); while(it.hasNext()) {
-	 * Autor a = it.next();
-	 * System.out.println(a.getIdAutor()+" - "+a.getNombreAutor()+" - "+a.
-	 * getNacionalidad()); }
-	 * request.getRequestDispatcher("/autores/listaAutores.jsp").forward(request,
-	 * response);
-	 * 
-	 * }
-	 */
 
 	private void listar(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		try {
