@@ -111,7 +111,6 @@ public class AutoresModel extends Conexion {
 
 		}
 	}
-	
 	public int eliminarAutor (int idAutor)throws SQLException {
 		try {
 			int filasAfectadas = 0;
@@ -128,7 +127,5 @@ public class AutoresModel extends Conexion {
 			return 0;
 		}
 	}
-	
-	
 
 }

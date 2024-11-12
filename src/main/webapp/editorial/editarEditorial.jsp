@@ -11,12 +11,12 @@
 	<%
 	String url = "http://localhost:8089/ejercicioWeb/";
 
-	Editorial editorial;
+		Editorial editorial;
 
-	if (request.getAttribute("editorial") == null)
-		editorial = new Editorial();
-	else
-		editorial = (Editorial) request.getAttribute("editorial");
+		if (request.getAttribute("editorial") == null)
+			editorial = new Editorial();
+		else
+			editorial = (Editorial) request.getAttribute("editorial");
 	%>
 
 	<h3>Editar Editorial</h3>

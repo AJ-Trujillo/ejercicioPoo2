@@ -12,9 +12,8 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<%
-	String url = "http://localhost:8089/ejercicioWeb/";
-	%>
+
+<%@ include file='/cabecera.jsp' %>
 
 	<a type="button" class="btn btn-primary" href="<%=url%>EditorialControllers?op=nuevo">Nuevo Editorial</a>;
 	<table id="tabla" border="1">
@@ -30,8 +29,8 @@
 		<tbody>
 			<%
 			List<Editorial> listarEditorial = (List<Editorial>) request.getAttribute("listaEditorial");
-			if (listarEditorial != null) {
-				for (Editorial editorial : listarEditorial) {
+				if (listarEditorial != null) {
+					for (Editorial editorial : listarEditorial) {
 			%>
 			<tr>
 				<td><%= editorial.getIdeditorial()%></td>
